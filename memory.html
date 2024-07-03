@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Memory Game</h2>
+        <div class="game"></div>
+            <button class="reset" onclick="window.location.reload();">Reset</button>
+    </div>
+
+<div class="dialog-container" id="dialogContainer">
+    <div class="dialog-box">
+        <p>CONGRATULATIONS,You have won the game!</p>
+        <a href="index.html">
+        <button onclick="resetGame()">OK</button>
+        </a>
+    </div>
+</div>
+
+  <script>
+    const emojis = ["🥰", "🥰", "🤣", "🤣", "😴", "😴", "🤯", "🤯", "🥶", "🥶", "🫣", "🫣", "😁", "😁", "😘", "😘"];
+    var emoji_shuffle = emojis.sort(() => Math.random() - 0.5);
+
+    for (var i = 0; i < emojis.length; i++) {
+        let box = document.createElement('div');
+        box.className = 'item';
+        box.innerHTML = emoji_shuffle[i];
+
+         box.onclick = function () {
+            this.classList.add('boxOpen');
+            setTimeout(function () {
+                if (document.querySelectorAll('.boxOpen').length > 1) {
+                    if (document.querySelectorAll('.boxOpen')[0].innerHTML ==
+                        document.querySelectorAll('.boxOpen')[1].innerHTML) {
+                        document.querySelectorAll('.boxOpen')[0].classList.
+                            add('boxMatch');
+                        document.querySelectorAll('.boxOpen')[1].classList.
+                            add('boxMatch');
+
+                        document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen');
+                        document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen');
+                        if (document.querySelectorAll('.boxMatch').length == emojis.length) {
+                            showWinDialog();
+                        }
+                    }
+                    else {
+                        document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen');
+                        document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen');
+                    }
+                }
+            }, 500)
+        }
+    
+        document.querySelector('.game').appendChild(box);
+    }
+
+    function showWinDialog() {
+        const dialogContainer = document.getElementById('dialogContainer');
+        dialogContainer.style.display = 'flex';
+    }
+
+    function resetGame() {
+        window.location.reload();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+  
+    <title>Document</title>
+    <style>
+    .dialog-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.dialog-box p {
+    margin-top: 0;
+    color: #333;
+}
+
+.dialog-box button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.dialog-box button:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+    <div class="dialog-container">
+        <div class="dialog-box">
+            <p>You have won the game!</p>
+            <button onclick="window.location.reload();">OK</button>
+        </div>
+    </div>
+</body>
+</html>
